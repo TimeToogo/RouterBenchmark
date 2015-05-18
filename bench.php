@@ -120,14 +120,14 @@ $setupBenchmark(
 );
 
 $setupBenchmark(
-    'Invalid HTTP method, static route',
+    'Invalid method, static route',
     'PUT', '/about-us',
     [\RapidRoute\MatchResult::HTTP_METHOD_NOT_ALLOWED, ['GET', 'HEAD']],
     [\FastRoute\Dispatcher::METHOD_NOT_ALLOWED, ['GET']]
 );
 
 $setupBenchmark(
-    'Invalid HTTP method, dynamic route',
+    'Invalid method, dynamic route',
     'PATCH', '/shop/category/123',
     [\RapidRoute\MatchResult::HTTP_METHOD_NOT_ALLOWED, ['GET', 'HEAD']],
     [\FastRoute\Dispatcher::METHOD_NOT_ALLOWED, ['GET']]
