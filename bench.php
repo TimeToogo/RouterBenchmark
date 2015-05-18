@@ -159,7 +159,7 @@ foreach ($benchmarks as $benchmark) {
     $fastestResult = each($benchResults);
 
     foreach ($benchResults as $name => $result) {
-        $change   = round((1 - $result / $fastestResult['value']) * 100, 0);
+        $change = round((1 - $result / $fastestResult['value']) * 100, 0);
         if ($change == 0) {
             $change = 'baseline';
         } else {
@@ -171,18 +171,18 @@ foreach ($benchmarks as $benchmark) {
         }
 
         $results[$name] = [
-            'result' => $result,
+            'result' => $result * 1000,
             'change' => $change,
         ];
     }
 
     $benchmarkResults[] = [
-        'Test Name'           => $benchmark->getName(),
-        'RapidRoute - Time'   => sprintf('%.10f', $results['RapidRoute']['result']),
-        'FastRoute - Time'    => sprintf('%.10f', $results['FastRoute']['result']),
-        'Relative Difference' => sprintf('%+.10f',
+        'Test Name'              => $benchmark->getName(),
+        'RapidRoute - Time (ms)' => sprintf('%.7f', $results['RapidRoute']['result']),
+        'FastRoute - Time (ms)'  => sprintf('%.7f', $results['FastRoute']['result']),
+        'Relative Difference'    => sprintf('%+.7f',
             $results['RapidRoute']['result'] - $results['FastRoute']['result']),
-        'Change'              => $results['FastRoute']['change'] === 'baseline'
+        'Change'                 => $results['FastRoute']['change'] === 'baseline'
             ? $results['RapidRoute']['change'] . '% slower'
             : $results['FastRoute']['change'] . '% faster',
     ];
