@@ -20,25 +20,23 @@ return function ($method, $uri) {
                     case 'HEAD':
                         return [2, ['name' => 'home'], []];
                     default:
-                        return [1, [
-                            0 => 'GET',
-                            1 => 'HEAD',
-                        ]];
+                        $allowedHttpMethods[] = 'GET';
+                        $allowedHttpMethods[] = 'HEAD';
+                        break;
                 }
             }
-            elseif ($s0 === 'about-us') {
+            if ($s0 === 'about-us') {
                 switch ($method) {
                     case 'GET':
                     case 'HEAD':
                         return [2, ['name' => 'about-us'], []];
                     default:
-                        return [1, [
-                            0 => 'GET',
-                            1 => 'HEAD',
-                        ]];
+                        $allowedHttpMethods[] = 'GET';
+                        $allowedHttpMethods[] = 'HEAD';
+                        break;
                 }
             }
-            elseif ($s0 === 'contact-us') {
+            if ($s0 === 'contact-us') {
                 switch ($method) {
                     case 'GET':
                     case 'HEAD':
@@ -46,52 +44,46 @@ return function ($method, $uri) {
                     case 'POST':
                         return [2, ['name' => 'contact-us.submit'], []];
                     default:
-                        return [1, [
-                            0 => 'GET',
-                            1 => 'HEAD',
-                            2 => 'POST',
-                        ]];
+                        $allowedHttpMethods[] = 'GET';
+                        $allowedHttpMethods[] = 'HEAD';
+                        $allowedHttpMethods[] = 'POST';
+                        break;
                 }
             }
-            elseif ($s0 === 'blog') {
+            if ($s0 === 'blog') {
                 switch ($method) {
                     case 'GET':
                     case 'HEAD':
                         return [2, ['name' => 'blog.index'], []];
                     default:
-                        return [1, [
-                            0 => 'GET',
-                            1 => 'HEAD',
-                        ]];
+                        $allowedHttpMethods[] = 'GET';
+                        $allowedHttpMethods[] = 'HEAD';
+                        break;
                 }
             }
-            elseif ($s0 === 'shop') {
+            if ($s0 === 'shop') {
                 switch ($method) {
                     case 'GET':
                     case 'HEAD':
                         return [2, ['name' => 'shop.index'], []];
                     default:
-                        return [1, [
-                            0 => 'GET',
-                            1 => 'HEAD',
-                        ]];
+                        $allowedHttpMethods[] = 'GET';
+                        $allowedHttpMethods[] = 'HEAD';
+                        break;
                 }
             }
-            elseif ($s0 === 'admin') {
+            if ($s0 === 'admin') {
                 switch ($method) {
                     case 'GET':
                     case 'HEAD':
                         return [2, ['name' => 'admin.index'], []];
                     default:
-                        return [1, [
-                            0 => 'GET',
-                            1 => 'HEAD',
-                        ]];
+                        $allowedHttpMethods[] = 'GET';
+                        $allowedHttpMethods[] = 'HEAD';
+                        break;
                 }
             }
-            else {
-                return [0];
-            }
+            return isset($allowedHttpMethods) ? [1, $allowedHttpMethods] : [0];
             break;
         
         case 2:
@@ -102,50 +94,46 @@ return function ($method, $uri) {
                     case 'HEAD':
                         return [2, ['name' => 'page.show'], ['page_slug' => $s1]];
                     default:
-                        return [1, [
-                            0 => 'GET',
-                            1 => 'HEAD',
-                        ]];
+                        $allowedHttpMethods[] = 'GET';
+                        $allowedHttpMethods[] = 'HEAD';
+                        break;
                 }
             }
-            elseif ($s0 === 'blog' && $s1 === 'recent') {
+            if ($s0 === 'blog' && $s1 === 'recent') {
                 switch ($method) {
                     case 'GET':
                     case 'HEAD':
                         return [2, ['name' => 'blog.recent'], []];
                     default:
-                        return [1, [
-                            0 => 'GET',
-                            1 => 'HEAD',
-                        ]];
+                        $allowedHttpMethods[] = 'GET';
+                        $allowedHttpMethods[] = 'HEAD';
+                        break;
                 }
             }
-            elseif ($s0 === 'shop') {
+            if ($s0 === 'shop') {
                 if ($s1 === 'category') {
                     switch ($method) {
                         case 'GET':
                         case 'HEAD':
                             return [2, ['name' => 'shop.category.index'], []];
                         default:
-                            return [1, [
-                                0 => 'GET',
-                                1 => 'HEAD',
-                            ]];
+                            $allowedHttpMethods[] = 'GET';
+                            $allowedHttpMethods[] = 'HEAD';
+                            break;
                     }
                 }
-                elseif ($s1 === 'product') {
+                if ($s1 === 'product') {
                     switch ($method) {
                         case 'GET':
                         case 'HEAD':
                             return [2, ['name' => 'shop.product.index'], []];
                         default:
-                            return [1, [
-                                0 => 'GET',
-                                1 => 'HEAD',
-                            ]];
+                            $allowedHttpMethods[] = 'GET';
+                            $allowedHttpMethods[] = 'HEAD';
+                            break;
                     }
                 }
-                elseif ($s1 === 'cart') {
+                if ($s1 === 'cart') {
                     switch ($method) {
                         case 'GET':
                         case 'HEAD':
@@ -155,19 +143,15 @@ return function ($method, $uri) {
                         case 'DELETE':
                             return [2, ['name' => 'shop.cart.empty'], []];
                         default:
-                            return [1, [
-                                0 => 'GET',
-                                1 => 'HEAD',
-                                2 => 'PUT',
-                                3 => 'DELETE',
-                            ]];
+                            $allowedHttpMethods[] = 'GET';
+                            $allowedHttpMethods[] = 'HEAD';
+                            $allowedHttpMethods[] = 'PUT';
+                            $allowedHttpMethods[] = 'DELETE';
+                            break;
                     }
                 }
-                else {
-                    return [0];
-                }
             }
-            elseif ($s0 === 'admin') {
+            if ($s0 === 'admin') {
                 if ($s1 === 'login') {
                     switch ($method) {
                         case 'GET':
@@ -176,26 +160,24 @@ return function ($method, $uri) {
                         case 'POST':
                             return [2, ['name' => 'admin.login.submit'], []];
                         default:
-                            return [1, [
-                                0 => 'GET',
-                                1 => 'HEAD',
-                                2 => 'POST',
-                            ]];
+                            $allowedHttpMethods[] = 'GET';
+                            $allowedHttpMethods[] = 'HEAD';
+                            $allowedHttpMethods[] = 'POST';
+                            break;
                     }
                 }
-                elseif ($s1 === 'logout') {
+                if ($s1 === 'logout') {
                     switch ($method) {
                         case 'GET':
                         case 'HEAD':
                             return [2, ['name' => 'admin.logout'], []];
                         default:
-                            return [1, [
-                                0 => 'GET',
-                                1 => 'HEAD',
-                            ]];
+                            $allowedHttpMethods[] = 'GET';
+                            $allowedHttpMethods[] = 'HEAD';
+                            break;
                     }
                 }
-                elseif ($s1 === 'product') {
+                if ($s1 === 'product') {
                     switch ($method) {
                         case 'GET':
                         case 'HEAD':
@@ -203,14 +185,13 @@ return function ($method, $uri) {
                         case 'POST':
                             return [2, ['name' => 'admin.product.store'], []];
                         default:
-                            return [1, [
-                                0 => 'GET',
-                                1 => 'HEAD',
-                                2 => 'POST',
-                            ]];
+                            $allowedHttpMethods[] = 'GET';
+                            $allowedHttpMethods[] = 'HEAD';
+                            $allowedHttpMethods[] = 'POST';
+                            break;
                     }
                 }
-                elseif ($s1 === 'category') {
+                if ($s1 === 'category') {
                     switch ($method) {
                         case 'GET':
                         case 'HEAD':
@@ -218,20 +199,14 @@ return function ($method, $uri) {
                         case 'POST':
                             return [2, ['name' => 'admin.category.store'], []];
                         default:
-                            return [1, [
-                                0 => 'GET',
-                                1 => 'HEAD',
-                                2 => 'POST',
-                            ]];
+                            $allowedHttpMethods[] = 'GET';
+                            $allowedHttpMethods[] = 'HEAD';
+                            $allowedHttpMethods[] = 'POST';
+                            break;
                     }
                 }
-                else {
-                    return [0];
-                }
             }
-            else {
-                return [0];
-            }
+            return isset($allowedHttpMethods) ? [1, $allowedHttpMethods] : [0];
             break;
         
         case 3:
@@ -242,13 +217,12 @@ return function ($method, $uri) {
                     case 'HEAD':
                         return [2, ['name' => 'blog.post.show'], ['post_slug' => $s2]];
                     default:
-                        return [1, [
-                            0 => 'GET',
-                            1 => 'HEAD',
-                        ]];
+                        $allowedHttpMethods[] = 'GET';
+                        $allowedHttpMethods[] = 'HEAD';
+                        break;
                 }
             }
-            elseif ($s0 === 'shop') {
+            if ($s0 === 'shop') {
                 if (ctype_digit($s2)) {
                     if ($s1 === 'category') {
                         switch ($method) {
@@ -256,10 +230,9 @@ return function ($method, $uri) {
                             case 'HEAD':
                                 return [2, ['name' => 'shop.category.show'], ['category_id' => $s2]];
                             default:
-                                return [1, [
-                                    0 => 'GET',
-                                    1 => 'HEAD',
-                                ]];
+                                $allowedHttpMethods[] = 'GET';
+                                $allowedHttpMethods[] = 'HEAD';
+                                break;
                         }
                     }
                     if ($s1 === 'product') {
@@ -268,15 +241,13 @@ return function ($method, $uri) {
                             case 'HEAD':
                                 return [2, ['name' => 'shop.product.show'], ['product_id' => $s2]];
                             default:
-                                return [1, [
-                                    0 => 'GET',
-                                    1 => 'HEAD',
-                                ]];
+                                $allowedHttpMethods[] = 'GET';
+                                $allowedHttpMethods[] = 'HEAD';
+                                break;
                         }
                     }
-                    return [0];
                 }
-                elseif ($s1 === 'cart' && $s2 === 'checkout') {
+                if ($s1 === 'cart' && $s2 === 'checkout') {
                     switch ($method) {
                         case 'GET':
                         case 'HEAD':
@@ -284,18 +255,14 @@ return function ($method, $uri) {
                         case 'POST':
                             return [2, ['name' => 'shop.cart.checkout.process'], []];
                         default:
-                            return [1, [
-                                0 => 'GET',
-                                1 => 'HEAD',
-                                2 => 'POST',
-                            ]];
+                            $allowedHttpMethods[] = 'GET';
+                            $allowedHttpMethods[] = 'HEAD';
+                            $allowedHttpMethods[] = 'POST';
+                            break;
                     }
                 }
-                else {
-                    return [0];
-                }
             }
-            elseif ($s0 === 'admin') {
+            if ($s0 === 'admin') {
                 if ($s1 === 'product') {
                     if ($s2 === 'create') {
                         switch ($method) {
@@ -303,13 +270,12 @@ return function ($method, $uri) {
                             case 'HEAD':
                                 return [2, ['name' => 'admin.product.create'], []];
                             default:
-                                return [1, [
-                                    0 => 'GET',
-                                    1 => 'HEAD',
-                                ]];
+                                $allowedHttpMethods[] = 'GET';
+                                $allowedHttpMethods[] = 'HEAD';
+                                break;
                         }
                     }
-                    elseif (ctype_digit($s2)) {
+                    if (ctype_digit($s2)) {
                         switch ($method) {
                             case 'GET':
                             case 'HEAD':
@@ -320,33 +286,28 @@ return function ($method, $uri) {
                             case 'DELETE':
                                 return [2, ['name' => 'admin.product.destroy'], ['product_id' => $s2]];
                             default:
-                                return [1, [
-                                    0 => 'GET',
-                                    1 => 'HEAD',
-                                    2 => 'PUT',
-                                    3 => 'PATCH',
-                                    4 => 'DELETE',
-                                ]];
+                                $allowedHttpMethods[] = 'GET';
+                                $allowedHttpMethods[] = 'HEAD';
+                                $allowedHttpMethods[] = 'PUT';
+                                $allowedHttpMethods[] = 'PATCH';
+                                $allowedHttpMethods[] = 'DELETE';
+                                break;
                         }
                     }
-                    else {
-                        return [0];
-                    }
                 }
-                elseif ($s1 === 'category') {
+                if ($s1 === 'category') {
                     if ($s2 === 'create') {
                         switch ($method) {
                             case 'GET':
                             case 'HEAD':
                                 return [2, ['name' => 'admin.category.create'], []];
                             default:
-                                return [1, [
-                                    0 => 'GET',
-                                    1 => 'HEAD',
-                                ]];
+                                $allowedHttpMethods[] = 'GET';
+                                $allowedHttpMethods[] = 'HEAD';
+                                break;
                         }
                     }
-                    elseif (ctype_digit($s2)) {
+                    if (ctype_digit($s2)) {
                         switch ($method) {
                             case 'GET':
                             case 'HEAD':
@@ -357,26 +318,17 @@ return function ($method, $uri) {
                             case 'DELETE':
                                 return [2, ['name' => 'admin.category.destroy'], ['category_id' => $s2]];
                             default:
-                                return [1, [
-                                    0 => 'GET',
-                                    1 => 'HEAD',
-                                    2 => 'PUT',
-                                    3 => 'PATCH',
-                                    4 => 'DELETE',
-                                ]];
+                                $allowedHttpMethods[] = 'GET';
+                                $allowedHttpMethods[] = 'HEAD';
+                                $allowedHttpMethods[] = 'PUT';
+                                $allowedHttpMethods[] = 'PATCH';
+                                $allowedHttpMethods[] = 'DELETE';
+                                break;
                         }
                     }
-                    else {
-                        return [0];
-                    }
-                }
-                else {
-                    return [0];
                 }
             }
-            else {
-                return [0];
-            }
+            return isset($allowedHttpMethods) ? [1, $allowedHttpMethods] : [0];
             break;
         
         case 4:
@@ -386,10 +338,11 @@ return function ($method, $uri) {
                     case 'POST':
                         return [2, ['name' => 'blog.post.comment'], ['post_slug' => $s2]];
                     default:
-                        return [1, [0 => 'POST']];
+                        $allowedHttpMethods[] = 'POST';
+                        break;
                 }
             }
-            elseif ($s0 === 'shop') {
+            if ($s0 === 'shop') {
                 if ($s1 === 'category') {
                     if ($s2 === 'search' && preg_match('/^([a-zA-Z]+)\\:(.+)$/', $s3, $matches2)) {
                         switch ($method) {
@@ -397,55 +350,45 @@ return function ($method, $uri) {
                             case 'HEAD':
                                 return [2, ['name' => 'shop.category.search'], ['filter_by' => $matches2[1], 'filter_value' => $matches2[2]]];
                             default:
-                                return [1, [
-                                    0 => 'GET',
-                                    1 => 'HEAD',
-                                ]];
+                                $allowedHttpMethods[] = 'GET';
+                                $allowedHttpMethods[] = 'HEAD';
+                                break;
                         }
                     }
-                    elseif ($s3 === 'product' && ctype_digit($s2)) {
+                    if ($s3 === 'product' && ctype_digit($s2)) {
                         switch ($method) {
                             case 'GET':
                             case 'HEAD':
                                 return [2, ['name' => 'shop.category.product.index'], ['category_id' => $s2]];
                             default:
-                                return [1, [
-                                    0 => 'GET',
-                                    1 => 'HEAD',
-                                ]];
+                                $allowedHttpMethods[] = 'GET';
+                                $allowedHttpMethods[] = 'HEAD';
+                                break;
                         }
                     }
-                    else {
-                        return [0];
-                    }
                 }
-                elseif ($s1 === 'product' && $s2 === 'search' && preg_match('/^([a-zA-Z]+)\\:(.+)$/', $s3, $matches3)) {
+                if ($s1 === 'product' && $s2 === 'search' && preg_match('/^([a-zA-Z]+)\\:(.+)$/', $s3, $matches3)) {
                     switch ($method) {
                         case 'GET':
                         case 'HEAD':
                             return [2, ['name' => 'shop.product.search'], ['filter_by' => $matches3[1], 'filter_value' => $matches3[2]]];
                         default:
-                            return [1, [
-                                0 => 'GET',
-                                1 => 'HEAD',
-                            ]];
+                            $allowedHttpMethods[] = 'GET';
+                            $allowedHttpMethods[] = 'HEAD';
+                            break;
                     }
                 }
-                else {
-                    return [0];
-                }
             }
-            elseif ($s0 === 'admin' && $s3 === 'edit' && ctype_digit($s2)) {
+            if ($s0 === 'admin' && $s3 === 'edit' && ctype_digit($s2)) {
                 if ($s1 === 'product') {
                     switch ($method) {
                         case 'GET':
                         case 'HEAD':
                             return [2, ['name' => 'admin.product.edit'], ['product_id' => $s2]];
                         default:
-                            return [1, [
-                                0 => 'GET',
-                                1 => 'HEAD',
-                            ]];
+                            $allowedHttpMethods[] = 'GET';
+                            $allowedHttpMethods[] = 'HEAD';
+                            break;
                     }
                 }
                 if ($s1 === 'category') {
@@ -454,17 +397,13 @@ return function ($method, $uri) {
                         case 'HEAD':
                             return [2, ['name' => 'admin.category.edit'], ['category_id' => $s2]];
                         default:
-                            return [1, [
-                                0 => 'GET',
-                                1 => 'HEAD',
-                            ]];
+                            $allowedHttpMethods[] = 'GET';
+                            $allowedHttpMethods[] = 'HEAD';
+                            break;
                     }
                 }
-                return [0];
             }
-            else {
-                return [0];
-            }
+            return isset($allowedHttpMethods) ? [1, $allowedHttpMethods] : [0];
             break;
         
         case 6:
@@ -475,15 +414,12 @@ return function ($method, $uri) {
                     case 'HEAD':
                         return [2, ['name' => 'shop.category.product.search'], ['category_id' => $s2, 'filter_by' => $matches5[1], 'filter_value' => $matches5[2]]];
                     default:
-                        return [1, [
-                            0 => 'GET',
-                            1 => 'HEAD',
-                        ]];
+                        $allowedHttpMethods[] = 'GET';
+                        $allowedHttpMethods[] = 'HEAD';
+                        break;
                 }
             }
-            else {
-                return [0];
-            }
+            return isset($allowedHttpMethods) ? [1, $allowedHttpMethods] : [0];
             break;
         
         default:
