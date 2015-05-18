@@ -178,8 +178,8 @@ foreach ($benchmarks as $benchmark) {
 
     $benchmarkResults[] = [
         'Test Name'              => $benchmark->getName(),
-        'RapidRoute - Time (ms)' => sprintf('%.7f', $results['RapidRoute']['result']),
-        'FastRoute - Time (ms)'  => sprintf('%.7f', $results['FastRoute']['result']),
+        'RapidRoute (ms)' => sprintf('%.7f', $results['RapidRoute']['result']),
+        'FastRoute (ms)'  => sprintf('%.7f', $results['FastRoute']['result']),
         'Relative Difference'    => sprintf('%+.7f',
             $results['RapidRoute']['result'] - $results['FastRoute']['result']),
         'Change'                 => $results['FastRoute']['change'] === 'baseline'
