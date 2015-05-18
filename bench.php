@@ -13,7 +13,7 @@ $rapidRoute = require __DIR__ . '/rr.php';
 $fastRoute = require __DIR__ . '/fr.php';
 
 // Iterations per test, higher = better average
-$iterations = 1000;
+$iterations = 100;
 // Iterations of repeat for each benchmark to register a measurable time
 $innerIterations = 1000;
 
@@ -177,12 +177,11 @@ foreach ($benchmarks as $benchmark) {
     }
 
     $benchmarkResults[] = [
-        'Test Name'              => $benchmark->getName(),
-        'RapidRoute (ms)' => sprintf('%.7f', $results['RapidRoute']['result']),
-        'FastRoute (ms)'  => sprintf('%.7f', $results['FastRoute']['result']),
-        'Relative Difference'    => sprintf('%+.7f',
-            $results['RapidRoute']['result'] - $results['FastRoute']['result']),
-        'Change'                 => $results['FastRoute']['change'] === 'baseline'
+        'Test Name'           => $benchmark->getName(),
+        'RapidRoute (ms)'     => sprintf('%.7f', $results['RapidRoute']['result']),
+        'FastRoute (ms)'      => sprintf('%.7f', $results['FastRoute']['result']),
+        'Relative Difference' => sprintf('%+.7f', $results['RapidRoute']['result'] - $results['FastRoute']['result']),
+        'Change'              => $results['FastRoute']['change'] === 'baseline'
             ? $results['RapidRoute']['change'] . '% slower'
             : $results['FastRoute']['change'] . '% faster',
     ];
