@@ -4,6 +4,8 @@ require __DIR__ . '/../markdown.php';
 
 // Absolute http url to this directory
 $url = 'http://localhost:8080/RouterBenchmark/ab/';
+// Path to apache benchmark
+$ab = 'ab';
 
 $requests   = 1000;
 $concurrent = 50;
@@ -13,8 +15,8 @@ $sleepInterval = 3;
 
 $benchmarks = [];
 
-$setupBenchmark = function ($name, $method, $uri) use (&$benchmarks, $url, $requests, $concurrent) {
-    $command     = "\"C:\\Program Files (x86)\\Apache 2.4\\bin\\ab.exe\" -d -S -q -n {$requests} -c {$concurrent} \"%s\"";
+$setupBenchmark = function ($name, $method, $uri) use (&$benchmarks, $ab, $url, $requests, $concurrent) {
+    $command     = "\"{$ab}\" -d -S -q -n {$requests} -c {$concurrent} \"%s\"";
     $queryString = http_build_query(['method' => $method, 'uri' => $uri]);
 
     $benchmarks[] = [
