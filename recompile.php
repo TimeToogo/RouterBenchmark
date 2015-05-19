@@ -9,5 +9,8 @@ require __DIR__ . '/vendor/autoload.php';
 
 require __DIR__ . '/rr.php';
 require __DIR__ . '/fr.php';
+
+$_GET['method'] = 'GET';
+$_GET['uri']    = '/';
 require __DIR__ . '/ab/rr.php';
 require __DIR__ . '/ab/fr.php';
