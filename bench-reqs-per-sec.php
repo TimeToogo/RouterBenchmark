@@ -1,13 +1,13 @@
 <?php
 
-require __DIR__ . '/../markdown.php';
+require __DIR__ . '/markdown.php';
 
 // Absolute http url to this directory
 $url = 'http://localhost:8080/RouterBenchmark/ab/';
 // Path to apache benchmark
 $ab = 'ab';
 
-$requests   = 1000;
+$requests   = 10000;
 $concurrent = 50;
 
 // How long to sleep after every ab call
@@ -89,10 +89,15 @@ foreach ($benchmarks as $benchmark) {
         $result = (double)$matches[1];
     }
 
+    $difference    = $rapidRouteResult - $fastRouteResult;
     $benchmarkResults[] = [
         'Test Name'            => $benchmark['name'],
         'RapidRoute (req/sec)' => sprintf('%.2f', $rapidRouteResult),
         'FastRoute (req/sec)'  => sprintf('%.2f', $fastRouteResult),
+        'Difference'           => sprintf('%+.2f', $difference),
+        'Change'               => $difference < 0
+            ? sprintf('%.2f', -$difference / $rapidRouteResult * 100) . '% slower'
+            : sprintf('%.2f', $difference / $fastRouteResult * 100) . '% faster',
     ];
 }
 

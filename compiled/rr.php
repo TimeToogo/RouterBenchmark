@@ -344,11 +344,11 @@ return function ($method, $uri) {
             }
             if ($s0 === 'shop') {
                 if ($s1 === 'category') {
-                    if ($s2 === 'search' && preg_match('/^([a-zA-Z]+)\\:(.+)$/', $s3, $matches2)) {
+                    if ($s2 === 'search' && preg_match('/^([a-zA-Z]+)\\:(.+)$/', $s3, $matches1)) {
                         switch ($method) {
                             case 'GET':
                             case 'HEAD':
-                                return [2, ['name' => 'shop.category.search'], ['filter_by' => $matches2[1], 'filter_value' => $matches2[2]]];
+                                return [2, ['name' => 'shop.category.search'], ['filter_by' => $matches1[1], 'filter_value' => $matches1[2]]];
                             default:
                                 $allowedHttpMethods[] = 'GET';
                                 $allowedHttpMethods[] = 'HEAD';
@@ -367,11 +367,11 @@ return function ($method, $uri) {
                         }
                     }
                 }
-                if ($s1 === 'product' && $s2 === 'search' && preg_match('/^([a-zA-Z]+)\\:(.+)$/', $s3, $matches3)) {
+                if ($s1 === 'product' && $s2 === 'search' && preg_match('/^([a-zA-Z]+)\\:(.+)$/', $s3, $matches2)) {
                     switch ($method) {
                         case 'GET':
                         case 'HEAD':
-                            return [2, ['name' => 'shop.product.search'], ['filter_by' => $matches3[1], 'filter_value' => $matches3[2]]];
+                            return [2, ['name' => 'shop.product.search'], ['filter_by' => $matches2[1], 'filter_value' => $matches2[2]]];
                         default:
                             $allowedHttpMethods[] = 'GET';
                             $allowedHttpMethods[] = 'HEAD';
