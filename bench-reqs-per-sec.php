@@ -2,7 +2,7 @@
 
 require __DIR__ . '/markdown.php';
 
-// Absolute http url to this directory
+// Absolute http url to the ./ab/ directory
 $url = 'http://localhost:8080/RouterBenchmark/ab/';
 // Path to apache benchmark
 $ab = 'ab';
