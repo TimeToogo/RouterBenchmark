@@ -6,11 +6,11 @@ use RapidRoute\Pattern;
 return CompiledRouter::generate(
     __DIR__ . '/compiled/rr.php',
     function (\RapidRoute\RouteCollection $routes) {
-        $routes->param('page_slug', Pattern::APLHA_NUM_DASH);
-        $routes->param('post_slug', Pattern::APLHA_NUM_DASH);
+        $routes->param('page_slug', Pattern::ALPHA_NUM_DASH);
+        $routes->param('post_slug', Pattern::ALPHA_NUM_DASH);
         $routes->param('category_id', Pattern::DIGITS);
         $routes->param('product_id', Pattern::DIGITS);
-        $routes->param('filter_by', Pattern::APLHA);
+        $routes->param('filter_by', Pattern::ALPHA);
 
         $routes->get('/', ['name' => 'home']);
         $routes->get('/page/{page_slug}', ['name' => 'page.show']);
